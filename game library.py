@@ -15,7 +15,57 @@ games = {1:['FPS','Halo 3','Bungie','Mircosoft','xbox 360','2007','8','either','
 
 keep_going = True
 
+def search_menu():
+    print(""" 
+        1) Search By Genre
+        2) Search By title
+        3) Search by Developer
+        4) Search by Publisher
+        5) Search by Platform
+        6) Search by Year Published
+        7) Search by Rating
+        8) Search by Single, Multiplayer, or Both
+        9) Search by Price
+        10) Search by Completed
+        11) Search by Date of Purchase
+        
+        q) Quit Search
+        """)
+    choice2 = input("how do you what to search? ")
 
+    
+    if choice2 == '1':
+        search_by_genre()
+        
+    elif choice2 == '2':
+        search_by_title()
+          
+    elif choice2 == '3':
+        search_by_dev()
+
+    elif choice2 == '4':
+        search_by_pub()
+        
+    elif choice2 == '5':
+        search_by_platform()
+
+    elif choice2 == '6':
+        search_by_pub_date()
+        
+    elif choice2 == '7':
+        search_by_rating()
+
+    elif choice2 == '8':
+        search_by_playingtype()
+        
+    elif choice2 == '9':
+        search_by_price()
+
+    elif choice2 == '10':
+        search_by_completion()
+        
+    elif choice2 == '11':
+        search_by_purchasedate()
 
 def search_by_genre():
         found_one = False
@@ -216,7 +266,7 @@ def search_by_price():
             if not found_one:
                     print("*** NO MATCHES FOUND!***\n")
 
-def  search_by_completion():
+def search_by_completion():
         found_one = False
         name = input("Have you completed the game? ")
         for key in games.keys():
@@ -262,31 +312,50 @@ def search_by_purchasedate():
 
 
 def add_new():
+    entry = []
 
-    new_key = len(games)+1
-
-    g = []
 
     valid = False
     while not valid:
-        games.append(input("what is the game Genre?"))
-        games.append(input("what is the game's title"))
-        games.append(input("what is the game's developer"))
-        games.append(input("what is the game's publisher"))
-        games.append(input("what is the game's platform"))
-        games.append(input("what is the game's published year"))
-        games.append(input("what is the game's rating"))
-        games.append(input("is the game Single, Multiplayer, or Both"))
-        games.append(input("what is the game's price "))
-        games.append(input("have you completed it "))
-        games.append(input("when was the date purchase "))
-    #games.append(input("what is the game's "))
+        entry.append(input("what is the game Genre?"))
+        entry.append(input("what is the game's title"))
+        entry.append(input("what is the game's developer"))
+        entry.append(input("what is the game's publisher"))
+        entry.append(input("what is the game's platform"))
+        entry.append(input("what is the game's published year"))
+        entry.append(input("what is the game's rating"))
+        entry.append(input("is the game Single, Multiplayer, or Both"))
+        entry.append(input("what is the game's price "))
+        entry.append(input("have you completed it "))
+        entry.append(input("when was the date purchase "))
 
 
         anwser = input("Is this correct?")
         if anwser in ("Yes","Y","yes","y"):
             valid = True
 
+    lengame = len(games) +1
+    games[lengame] = entry
+    print("entry added,")
+
+def edit_game():
+    pass
+
+def remove_game():
+    found = False
+    game_removed = input("what game do you want to remove from the library? ")
+    for key in games:
+        if games[key][1] == game_removed:
+            print(games[key][1])
+            confirm = input("are you sure this is the game that you want to remove? ")
+            if confirm == ("y","Y","Yes","yes"):
+                games.pop(key)
+                print(game_removed, "has been removed")
+                break
+            else:
+                print("Removal unsuccessful")
+    if not found:
+        print("That game is not in the library.")
 
 
 def print_all_games():
@@ -335,71 +404,19 @@ while keep_going:
         add_new()
 
     elif choice == "2":
-        edit_game
+        edit_game()
 
     elif choice == "3":
         print_all_games()
 
     elif choice == "4":
-     print(""" 
-        1) Search By Genre
-        2) Search By title
-        3) Search by Developer
-        4) Search by Publisher
-        5) Search by Platform
-        6) Search by Year Published
-        7) Search by Rating
-        8) Search by Single, Multiplayer, or Both
-        9) Search by Price
-        10) Search by Completed
-        11) Search by Date of Purchase
-        
-        q) Quit Search
-        """)
-        choice2 = input("how do you what to search? ")
-
-    
-    if choice2 == '1':
-        search_by_genre()
-        
-
-    elif choice2 == '2':
-        search_by_title()
-          
-
-    elif choice2 == '3':
-        search_by_dev()
-
-    elif choice2 == '4':
-        search_by_pub()
-    
-    elif choice2 == '5':
-        search_by_platform()
-
-    elif choice2 == '6':
-       search_by_pub_date()
-    
-    elif choice2 == '7':
-        search_by_rating()
-
-    elif choice2 == '8':
-        search_by_playingtype()
-    
-    elif choice2 == '9':
-        search_by_price()
-
-    elif choice2 == '10':
-       search_by_completion()
-    
-    elif choice2 == '11':
-        search_by_purchasedate()
+        search_menu()
 
     
         
-        
-
+    
     elif choice == "5":
-       print("Work in progress")
+        remove_game()
 
     elif choice == "6":
         #saving_list()
