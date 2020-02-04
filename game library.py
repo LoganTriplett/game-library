@@ -15,6 +15,25 @@ games = {1:['FPS','Halo 3','Bungie','Mircosoft','xbox 360','2007','8','either','
 
 keep_going = True
 
+def print_all_games():
+
+    key_list = games.keys()
+
+    for key in key_list:
+        print()
+        print("Genre: ", games[key][0])
+        print("Title: ", games[key][1])
+        print("Developer: ", games[key][2])
+        print("Publisher: ", games[key][3])
+        print("Platform: ", games[key][4])
+        print("Year Published: ", games[key][5])
+        print("Rating: ", games[key][6])
+        print("Single, Multiplayer, or Both: ", games[key][7])
+        print("Price: ", games[key][8])
+        print("Completed: ", games[key][9])
+        print("Date of Purchase: ", games[key][10])
+        print("-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-")
+
 def search_menu():
     print(""" 
         1) Search By Genre
@@ -371,42 +390,48 @@ def edit_game():
         print("Not found.")
 
 def remove_game():
-    found = False
-    game_removed = input("what game do you want to remove from the library? ")
-    for key in games:
-        if games[key][1] == game_removed:
-            print(games[key][1])
-            confirm = input("are you sure this is the game that you want to remove? ")
-            if confirm == "y" or confirm == "y" or confirm == "Y" or confirm == "Yes" or confirm == "yes":
-                games.pop(key)
-                print(game_removed, "has been removed")
-            elif not found:
-                print("That game is not in the library.")
-                
-                break
-            else:
-                print("Removal unsuccessful")
-        
-def print_all_games():
-
-    key_list = games.keys()
-
-    for key in key_list:
-        print()
-        print("Genre: ", games[key][0])
-        print("Title: ", games[key][1])
-        print("Developer: ", games[key][2])
-        print("Publisher: ", games[key][3])
-        print("Platform: ", games[key][4])
-        print("Year Published: ", games[key][5])
-        print("Rating: ", games[key][6])
-        print("Single, Multiplayer, or Both: ", games[key][7])
-        print("Price: ", games[key][8])
-        print("Completed: ", games[key][9])
-        print("Date of Purchase: ", games[key][10])
-        print("-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-")
+    print_all_games()
+    game_removed = int(input("what game do you want to remove from the library? "))
+    float()
+    for key in games.keys():
+        if key >= game_removed and key != len(games):
+            games[key] = games[key+1]
+        if key == len(games):
+            games.pop(key)
 
 
+
+    #else: 
+        #print("Removal unsuccessful")
+    
+    #for key in games:
+    #    if key > selected_key:
+    #        key -= 1
+
+    #if not found:
+    #    print("That game is not in the library.")
+
+
+
+
+"""
+
+    print_all_games()
+    selected_key = input("What is the game you would like to delete? ")
+    try:
+        selected_key = int(selected_key)
+        print_game(games[selected_key])
+        confirm_deletion = input("Are you sure you want to delete? ")
+        if confirm_deletion == "y":
+            for key in range(1,len(games) + 1):
+                if key >= selected_key and keys != len(gamees):
+                    games[key] = games[key + 1]
+                if key == len(games):
+                    games.pop(key)
+    except:
+        print("that game is not in the library ")
+"""
+ 
 
 while keep_going:
     print("""
