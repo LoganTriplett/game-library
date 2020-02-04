@@ -310,7 +310,6 @@ def search_by_purchasedate():
             if not found_one:
                     print("*** NO MATCHES FOUND!***\n")
 
-
 def add_new():
     entry = []
 
@@ -339,7 +338,37 @@ def add_new():
     print("entry added,")
 
 def edit_game():
-    pass
+    found = False
+    edit_search = input("What game do you want to edit?\n ")
+    for key in games:
+        if games[key][1] == edit_search:
+            found = True
+            #print_all_games(key)
+            print("""
+            1)  Genre
+            2)  Title
+            3)  Developer
+            4)  Publisher
+            5)  Platform
+            6)  Year Published
+            7)  Rating
+            8)  Single, Multiplayer, or Both
+            9)  Price
+            10) Completed
+            11) Date of Purchase:
+                
+                        
+                """)
+
+            choice5 = input("Which item would you like to change? \n")
+
+            choice5 = int(choice5)-1
+            edit = input(" what would you like to add to this item? \n")
+            games[key][choice5] == edit
+            print("change worked")
+            break
+    if not found:
+        print("Not found.")
 
 def remove_game():
     found = False
@@ -348,16 +377,16 @@ def remove_game():
         if games[key][1] == game_removed:
             print(games[key][1])
             confirm = input("are you sure this is the game that you want to remove? ")
-            if confirm == ("y","Y","Yes","yes"):
+            if confirm == "y" or confirm == "y" or confirm == "Y" or confirm == "Yes" or confirm == "yes":
                 games.pop(key)
                 print(game_removed, "has been removed")
+            elif not found:
+                print("That game is not in the library.")
+                
                 break
             else:
                 print("Removal unsuccessful")
-    if not found:
-        print("That game is not in the library.")
-
-
+        
 def print_all_games():
 
     key_list = games.keys()
@@ -376,6 +405,7 @@ def print_all_games():
         print("Completed: ", games[key][9])
         print("Date of Purchase: ", games[key][10])
         print("-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-")
+
 
 
 while keep_going:
@@ -412,29 +442,34 @@ while keep_going:
     elif choice == "4":
         search_menu()
 
-    
-        
-    
     elif choice == "5":
         remove_game()
 
     elif choice == "6":
-        #saving_list()
-        pickle_file = open("./saves/gamelib.pickle", "wb")
-        pickle.dump(games, pickle_file)
-        pickle_file.close()
+        choice3 = input("do you want to save, y/n?\n ")
+        if choice3 == "y" or choice3 == 'Y' or choice3 == 'Yes' or choice3 == 'yes': 
+            pickle_file = open("./saves/gamelib.pickle", "wb")
+            pickle.dump(games, pickle_file)
+            pickle_file.close()
 
-        pickle_file = open("./saves/gamelib.pickle", "rb")
-        games = pickle.load(pickle_file)
+            pickle_file = open("./saves/gamelib.pickle", "rb")
+            games = pickle.load(pickle_file)
 
-        print("SAVING...\n")
-        print(" ")
-        print("SAVING COMPLETE\n")
+            print("SAVING...\n")
+            print(" ")
+            print("SAVING COMPLETE\n")
+        elif choice3 == "n" or choice3 == "N" or choice3 == "No" or choice3 == "no":
+            print("Not Saving")
 
     elif choice == "Q" or choice == "q":
-        quit()
-        keep_going = False
-
+        choice4 = input("do you want to quit y/n\n ")        
+        if choice4 == "y" or choice4 == 'Y' or choice4 == 'Yes' or choice4 == 'yes' or choice4 == 'q' or choice4 == 'Q': 
+            print("Quitting...\n ")
+            quit()
+            keep_going = False
+        
+        elif choice4 == "n" or choice4 == "N" or choice4 == "No" or choice4 == "no":
+            print("Not Quitting\n ")
     else:
         print("*** NOT A VALID CHOICE ***\n")
 
