@@ -9,10 +9,8 @@ SMALL_FONT = ("Helvetica", 8)
 def popupmsg(msg):
     popup = tk.Tk()
     popup.wm_title("file saved")
-    label = ttk.Label(popup, text= "file saved", font=NORM_FONT)
-    label.pack(side="top", fill="x", pady=10)
-    Btn_ok = ttk.Button(popup, text="Okay", command = popup.destroy)
-    Btn_ok.pack()
+    label = tk.Label(popup, text= "file saved", font=NORM_FONT)
+    Btn_ok = tk.Button(popup, text="Okay", command = popup.destroy)
     popup.mainloop()
 
 class MainMenu(tk.Frame):
@@ -77,7 +75,22 @@ class EditMenu():
     btn_confirm.grid(row = 4, column = 1)
 
 class SearchMenu():
-print(" work in progress")
+    lbl_top = tk.Label(text = "search")
+    lbl_top.grid(row = 0, column = 1)
+    lbl_searchby = tk.Label(text = "Search By: ")
+    lbl_searchby.grid(row = 1, column = 0)
+    entry_searchby = tk.Entry(text = "")
+    entry_searchby.grid(row = 2, column = 0)
+
+    lbl_searchfor = tk.Label(text = "search for: ")
+    lbl_searchfor.grid(row = 4, column = 0)
+    entry_searchfor = tk.Entry(text = "")
+    entry_searchfor.grid(row = 5, column = 0)
+
+    
+
+
+
 
 class RemoveMenu():
     lbl_question = tk.Label(text = "Which Title would you like to remove?", row = 0, column = 0)
