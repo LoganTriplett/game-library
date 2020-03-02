@@ -92,8 +92,8 @@ class AddNewMenu(Screen):
         self.chckbox_beat_it.grid(row = 4, column = 1, sticky = "news")
         #self.ent_rating = tk.Entry(self)
 
-        self.dropdwn_rating = tk.OptionMenu()
-        self.dropdwn_rating.grid(row = 4, column = 3)
+        #self.dropdwn_rating = tk.OptionMenu()
+        #self.dropdwn_rating.grid(row = 4, column = 3)
 
 
         self.btn_cancel = tk.Button(self, text = "cancel", command = self.go_back)
@@ -122,6 +122,11 @@ class EditMenu(tk.Frame):
 
         self.btn_confirm = tk.Button(self, text = "confirm")
         self.btn_confirm.grid(row = 4, column = 1)
+    
+    def update(self):
+        entry = games[self.edit_key][0]
+        self.ent_genre.delete(0, "end")
+        self.ent_insert(0, entry[0])
 
     def go_back(self):
         Screen.current = 0
